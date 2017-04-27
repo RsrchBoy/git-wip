@@ -39,11 +39,7 @@ function! GitWipSave()
         endif
 endf
 
-silent! !git wip -h >/dev/null 2>&1
-if !v:shell_error
-        augroup git-wip
-                autocmd!
-                autocmd BufWritePost * :call GitWipSave()
-        augroup END
+if executable('git-wip')
+        au User FugitiveBoot autocmd BufWritePost <buffer> :call GitWipSave()
 endif
 
