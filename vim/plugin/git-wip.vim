@@ -40,6 +40,9 @@ function! GitWipSave()
 endf
 
 if executable('git-wip')
-        au User FugitiveBoot au! BufWritePost <buffer> :call GitWipSave()
+    augroup git-wip
+        au!
+        au User Fugitive au! BufWritePost <buffer> :call GitWipSave()
+    augroup END
 endif
 
